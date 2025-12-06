@@ -3,6 +3,7 @@ import React from 'react';
 import { FaHtml5, FaCss3Alt, FaJs, FaBootstrap, FaGitAlt } from 'react-icons/fa';
 import { SiReact, SiMongodb, SiNodedotjs, SiExpress, SiNpm, SiTailwindcss, SiMui } from 'react-icons/si';
 import AnimatedSection from '../utils/AnimatedSection'; // 👈 Import the wrapper
+import image2 from '../assets/image2.png';
 
 const About = () => {
     // Shortened, concise services list
@@ -44,7 +45,7 @@ const About = () => {
                         {/* Left Column: Image */}
                         <div className="lg:w-1/2 w-full flex justify-center lg:justify-start order-1">
                             <img
-                                src="/my-portfolio/portfolio/images/image2.png" 
+                                src={image2}
                                 alt="Developer illustration working at desk"
                                 className="w-full max-w-lg h-auto object-contain"
                             />
