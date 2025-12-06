@@ -1,5 +1,8 @@
 // src/components/Hero.jsx
 import React from 'react';
+import image1 from '../assets/image1.png';
+import myCV from '../assets/My CV.pdf';
+
 
 
 import { FaGithub, FaLinkedin, FaGoogle, FaInstagram, FaFilePdf, FaEnvelope } from 'react-icons/fa';
@@ -75,7 +78,7 @@ const Hero = () => {
 
                         {/* See My Resume Button */}
                         <a 
-                            href="/images/My CV.pdf" 
+                            href={myCV}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center 
@@ -93,7 +96,7 @@ const Hero = () => {
                 {/* Right Column: Illustration Image Tag */}
                 <div className="hidden lg:flex lg:w-2/5 justify-center items-center mt-12 lg:mt-0 z-0">
                     <img 
-                        src="/public/images/image1.png" 
+                        src={image1} 
                         alt="Developer illustration working at desk" 
                         className="w-full max-w-md h-auto object-contain"
                     />
