@@ -1,0 +1,12 @@
+/* src/index.css or src/globals.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* * This single rule enables smooth scrolling for all anchor links 
+* throughout your entire application (Header, Hero, etc.)
+*/
+html {
+  scroll-behavior: smooth;
+}
