@@ -91,7 +91,7 @@ const Hero = () => {
                 {/* Right Column: Illustration Image Tag */}
                 <div className="hidden lg:flex lg:w-2/5 justify-center items-center mt-12 lg:mt-0 z-0">
                     <img 
-                        src="\public\images\image-1.png" 
+                        src="my-portfolio/portfolio/public/images/image-1.png" 
                         alt="Developer illustration working at desk" 
                         className="w-full max-w-md h-auto object-contain"
                     />
