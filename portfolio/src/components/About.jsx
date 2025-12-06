@@ -44,7 +44,7 @@ const About = () => {
                         {/* Left Column: Image */}
                         <div className="lg:w-1/2 w-full flex justify-center lg:justify-start order-1">
                             <img
-                                src="\public\images\image-2.png"
+                                src="\public\images\image2.png"
                                 alt="Developer illustration working at desk"
                                 className="w-full max-w-lg h-auto object-contain"
                             />
