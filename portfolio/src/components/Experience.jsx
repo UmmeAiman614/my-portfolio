@@ -1,9 +1,9 @@
 // src/components/Experience.jsx
 import React from 'react';
+import AnimatedSection from '../utils/AnimatedSection';
 import { FaExternalLinkAlt, FaGithub, FaCalendarAlt, FaStar, FaBuilding, FaUtensils, FaShoppingCart } from 'react-icons/fa';
-import { FaCheckCircle } from 'react-icons/fa'; 
+import { FaCheckCircle } from 'react-icons/fa';
 
-// Data structure updated with your current projects and statuses (Content unchanged)
 const projectExperience = [
     {
         title: 'Full-Stack E-commerce Platform',
@@ -72,122 +72,76 @@ const projectExperience = [
 
 const Experience = () => {
     return (
-        // Section Background: Light Mode (bg-surface/Cream) | Dark Mode (dark:bg-background/Black)
-        <section id="experience" 
-                 className="py-16 md:py-24 
-                            bg-surface dark:bg-background 
-                            text-background dark:text-surface 
-                            transition-colors duration-500">
+        <section id="experience" className="py-16 md:py-24 bg-surface dark:bg-background text-background dark:text-surface transition-colors duration-500">
             <div className="container mx-auto px-4 max-w-5xl">
                 
                 {/* Section Heading */}
-                <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-16 text-primary 
-                               border-b-2 border-primary/50 pb-2 inline-block mx-auto">
-                    Key Projects & Technical Experience
-                </h2>
+                <AnimatedSection direction="bottom" delay={0}>
+                    <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-16 text-primary border-b-2 border-primary/50 pb-2 inline-block mx-auto">
+                        Key Projects & Technical Experience
+                    </h2>
+                </AnimatedSection>
 
-                {/* Timeline Container - Relative position for absolute line and dots */}
                 <div className="relative space-y-16">
-                    
-                    {/* Vertical Timeline Line (Only visible on medium screens and up) */}
                     <div className="hidden md:block absolute left-1 top-0 bottom-0 w-1 bg-primary/30 rounded-full"></div>
 
                     {projectExperience.map((project, index) => (
-                        <div key={index} className="relative">
-                            
-                            {/* Timeline Dot/Numbering (Absolute position on medium screens) */}
-                            <div className="absolute top-1 left-0 transform -translate-x-1/2 
-                                            hidden md:flex items-center justify-center 
-                                            w-8 h-8 rounded-full border-4 border-surface dark:border-background 
-                                            bg-primary text-surface font-bold text-sm z-10 
-                                            shadow-lg">
-                                {/* Display the project number (1, 2, 3...) */}
-                                {index + 1}
-                            </div>
-                            
-                            {/* Project Card */}
-                            <div className="flex flex-col lg:flex-row shadow-xl 
-                                        rounded-lg p-6 transition duration-300 
-                                        
-                                        /* Card Base Color Fix */
-                                        bg-surface dark:bg-background 
-                                        
-                                        /* Dark Mode Border Fix */
-                                        dark:border dark:border-surface/40
-                                        
-                                        /* Hover Fix */
-                                        hover:bg-secondary/20 dark:hover:bg-surface/10
-                                        
-                                        /* Offset card content slightly to the right of the line on desktop */
-                                        md:ml-12"> 
-                                
-                                {/* Left Side: Role, Duration, Links */}
-                                <div className="lg:w-1/4 flex flex-col space-y-2 mb-4 lg:mb-0 lg:pr-8">
-                                    <h3 className="text-xl font-bold text-primary">
-                                        {project.title}
-                                    </h3>
-                                    <p className="text-md font-medium text-secondary">
-                                        {project.role}
-                                    </p>
-                                    <p className="text-sm flex items-center text-background/70 dark:text-surface/70">
-                                        <FaCalendarAlt className="mr-2 text-primary" /> {project.duration}
-                                    </p>
-
-                                    {/* Status Badge (Uses secondary/primary accents) */}
-                                    <div className={`text-xs font-bold px-2 py-1 rounded-full w-fit mt-1 ${
-                                        project.status === 'In Progress' 
-                                            ? 'bg-secondary/30 text-secondary' 
-                                            : 'bg-primary/30 text-primary'
-                                    }`}>
-                                        {project.status}
-                                    </div>
-
-                                    {/* Links (Always primary accent color) */}
-                                    <div className="flex space-x-4 pt-2">
-                                        <a href={project.githubLink} target="_blank" rel="noopener noreferrer" 
-                                        className="text-primary hover:text-secondary transition duration-300 flex items-center text-sm"
-                                        aria-label={`GitHub for ${project.title}`}>
-                                            <FaGithub className="mr-1" /> Code
-                                        </a>
-                                        <a href={project.liveLink} target="_blank" rel="noopener noreferrer" 
-                                        className="text-primary hover:text-secondary transition duration-300 flex items-center text-sm"
-                                        aria-label={`Live Demo for ${project.title}`}>
-                                            <FaExternalLinkAlt className="mr-1 text-xs" /> Live Demo
-                                        </a>
-                                    </div>
+                        <AnimatedSection key={index} direction={index % 2 === 0 ? 'left' : 'right'} delay={index * 200}>
+                            <div className="relative">
+                                <div className="absolute top-1 left-0 transform -translate-x-1/2 hidden md:flex items-center justify-center w-8 h-8 rounded-full border-4 border-surface dark:border-background bg-primary text-surface font-bold text-sm z-10 shadow-lg">
+                                    {index + 1}
                                 </div>
 
-                                {/* Right Side: Description and Accomplishments */}
-                                <div className="lg:w-3/4 space-y-4 border-l-0 lg:border-l-2 
-                                            /* Inner Border Fix: Always visible using an accent color */
-                                            border-primary/50 dark:border-secondary/50 lg:pl-8"> 
-                                    {/* Description text color swaps correctly */}
-                                    <p className="text-lg italic text-background/90 dark:text-surface/90">
-                                        {project.description}
-                                    </p>
+                                <div className="flex flex-col lg:flex-row shadow-xl rounded-lg p-6 bg-surface dark:bg-background dark:border dark:border-surface/40 hover:bg-secondary/20 dark:hover:bg-surface/10 md:ml-12 transition duration-300">
+                                    
+                                    {/* Left Side: Role, Duration, Links */}
+                                    <div className="lg:w-1/4 flex flex-col space-y-2 mb-4 lg:mb-0 lg:pr-8">
+                                        <h3 className="text-xl font-bold text-primary">{project.title}</h3>
+                                        <p className="text-md font-medium text-secondary">{project.role}</p>
+                                        <p className="text-sm flex items-center text-background/70 dark:text-surface/70">
+                                            <FaCalendarAlt className="mr-2 text-primary" /> {project.duration}
+                                        </p>
 
-                                    {/* Badges (Uses primary/secondary accent colors) */}
-                                    <div className="flex flex-wrap gap-2">
-                                        {project.badges.map((badge, i) => (
-                                            <span key={i} className="px-3 py-1 text-xs font-semibold rounded-full bg-secondary/20 text-secondary dark:bg-primary/20 dark:text-primary">
-                                                {badge}
-                                            </span>
-                                        ))}
+                                        <div className={`text-xs font-bold px-2 py-1 rounded-full w-fit mt-1 ${
+                                            project.status === 'In Progress' 
+                                                ? 'bg-secondary/30 text-secondary' 
+                                                : 'bg-primary/30 text-primary'
+                                        }`}>
+                                            {project.status}
+                                        </div>
+
+                                        <div className="flex space-x-4 pt-2">
+                                            <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="text-primary hover:text-secondary transition duration-300 flex items-center text-sm" aria-label={`GitHub for ${project.title}`}>
+                                                <FaGithub className="mr-1" /> Code
+                                            </a>
+                                            <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="text-primary hover:text-secondary transition duration-300 flex items-center text-sm" aria-label={`Live Demo for ${project.title}`}>
+                                                <FaExternalLinkAlt className="mr-1 text-xs" /> Live Demo
+                                            </a>
+                                        </div>
                                     </div>
 
-                                    {/* Key Accomplishments (Bullet Points) */}
-                                    <ul className="list-disc list-inside space-y-2 pt-2 text-base">
-                                        {project.accomplishments.map((ac, i) => (
-                                            <li key={i} className="flex items-start">
-                                                <FaStar className="mt-1 mr-2 text-primary flex-shrink-0 text-xs" />
-                                                {/* Accomplishment text color swaps correctly */}
-                                                <span className='text-background dark:text-surface'>{ac}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
+                                    {/* Right Side: Description and Accomplishments */}
+                                    <div className="lg:w-3/4 space-y-4 border-l-0 lg:border-l-2 border-primary/50 dark:border-secondary/50 lg:pl-8">
+                                        <p className="text-lg italic text-background/90 dark:text-surface/90">{project.description}</p>
+
+                                        <div className="flex flex-wrap gap-2">
+                                            {project.badges.map((badge, i) => (
+                                                <span key={i} className="px-3 py-1 text-xs font-semibold rounded-full bg-secondary/20 text-secondary dark:bg-primary/20 dark:text-primary">{badge}</span>
+                                            ))}
+                                        </div>
+
+                                        <ul className="list-disc list-inside space-y-2 pt-2 text-base">
+                                            {project.accomplishments.map((ac, i) => (
+                                                <li key={i} className="flex items-start">
+                                                    <FaStar className="mt-1 mr-2 text-primary flex-shrink-0 text-xs" />
+                                                    <span className='text-background dark:text-surface'>{ac}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </AnimatedSection>
                     ))}
                 </div>
             </div>

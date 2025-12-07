@@ -3,37 +3,44 @@ import React from 'react';
 import { useInView } from 'react-intersection-observer';
 
 /**
- * A wrapper component to apply fade-in/slide-up animation when an element enters the viewport.
- * @param {object} props - Component props.
- * @param {number} [props.delay=0] - Delay in milliseconds before the animation starts.
- * @param {number} [props.threshold=0.1] - Percentage of element visible before trigger (0.0 to 1.0).
- * @param {string} [props.className=''] - Additional classes for the container.
+ * AnimatedSection wrapper with directional animation
+ * @param {object} props
+ * @param {'bottom' | 'left' | 'right'} [props.direction='bottom'] - Direction from which the element enters
+ * @param {number} [props.delay=0] - Delay in ms before animation
+ * @param {number} [props.threshold=0.1] - Visibility threshold to trigger animation
+ * @param {string} [props.className=''] - Additional classes
  */
-const AnimatedSection = ({ children, delay = 0, threshold = 0.1, className = '' }) => {
-    
-    // useInView hook tracks if the element is currently visible
+const AnimatedSection = ({ children, delay = 0, threshold = 0.1, className = '', direction = 'bottom' }) => {
     const { ref, inView } = useInView({
-        threshold: threshold, // Trigger when 10% of the element is visible
-        triggerOnce: true,   // Only trigger the animation once
+        threshold: threshold,
+        triggerOnce: true,
     });
 
-    // Define Tailwind CSS classes for the animation
+    // Base animation classes
+    let translateClass = '';
+    switch(direction) {
+        case 'left':
+            translateClass = inView ? 'translate-x-0' : '-translate-x-8';
+            break;
+        case 'right':
+            translateClass = inView ? 'translate-x-0' : 'translate-x-8';
+            break;
+        default:
+            translateClass = inView ? 'translate-y-0' : 'translate-y-8';
+    }
+
     const animationClasses = `
-        transition-all duration-1000 ease-out 
-        ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
+        transition-all duration-1000 ease-out
+        ${inView ? 'opacity-100' : 'opacity-0'} 
+        ${translateClass}
     `;
 
-    // Calculate delay style
     const style = {
         transitionDelay: `${delay}ms`,
     };
 
     return (
-        <div 
-            ref={ref} 
-            className={`${animationClasses} ${className}`} 
-            style={style}
-        >
+        <div ref={ref} className={`${animationClasses} ${className}`} style={style}>
             {children}
         </div>
     );
